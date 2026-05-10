@@ -1,4 +1,10 @@
-const Table = ({ coins }) => {
+import type { Coin } from '../types';
+
+interface TableProps {
+    coins: Coin[];
+}
+
+const Table = ({ coins }: TableProps) => {
 
     return (
         <div>
