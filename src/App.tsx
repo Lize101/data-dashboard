@@ -1,6 +1,8 @@
 import Table from './components/Table';
 import { useState, useEffect } from 'react';
 import type { Coin } from './types';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -28,8 +30,9 @@ function App() {
 
   return (
     <>
-      <h1>Dashboard</h1>
+      <Header />
       <Table coins={coins}/>
+      <Footer />
     </>
   )
 }
