@@ -10,15 +10,16 @@ function App() {
   const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=gbp&order=market_cap_desc&per_page=10&page=1&x_cg_demo_api_key=${apiKey}`;
 
   const [coins, setCoins] = useState<Coin[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const fetchCoins = async () => {
 
     try {
-
+      setLoading(true);
       const data = await fetch(url);
       const response = await data.json();
       setCoins(response);
-
+      setLoading(false);
     } catch (err) {
       console.error('Error' + err);
     }
@@ -31,7 +32,7 @@ function App() {
   return (
     <>
       <Header />
-      <Table coins={coins}/>
+      {loading ? <p>Loading data...</p> : <Table coins={coins}/>}
       <Footer />
     </>
   )
