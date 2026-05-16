@@ -11,6 +11,7 @@ function App() {
 
   const [coins, setCoins] = useState<Coin[]>([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const fetchCoins = async () => {
 
@@ -21,6 +22,8 @@ function App() {
       setCoins(response);
       setLoading(false);
     } catch (err) {
+      setError('An error has occurred.')
+      setLoading(false);
       console.error('Error' + err);
     }
   }
@@ -32,7 +35,7 @@ function App() {
   return (
     <>
       <Header />
-      {loading ? <p>Loading data...</p> : <Table coins={coins}/>}
+      {loading ? <p>Loading data...</p> : error ? <p>{error}</p> : <Table coins={coins}/>}
       <Footer />
     </>
   )
